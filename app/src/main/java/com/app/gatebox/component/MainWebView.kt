@@ -1,5 +1,6 @@
 package com.app.gatebox.component
 
+import android.view.ViewGroup.LayoutParams
 import android.webkit.WebView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -14,6 +15,7 @@ fun MainWebView() {
   AndroidView(
     factory = {
       webView.apply {
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addJavascriptInterface(JSKotlinBridge(), "webview-layla")
       }
     }
