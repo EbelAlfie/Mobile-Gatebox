@@ -13,7 +13,9 @@ fun MainWebView() {
 
   AndroidView(
     factory = {
-      webView
+      webView.apply {
+        addJavascriptInterface(JSKotlinBridge(), "webview-layla")
+      }
     }
   )
 }
