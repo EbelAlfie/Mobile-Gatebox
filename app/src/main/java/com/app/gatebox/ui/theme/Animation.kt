@@ -8,6 +8,7 @@ import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -123,11 +124,12 @@ fun LikeAnimation(
 @Preview
 @Composable
 fun AnimationOverlay() {
+  val heartCount = remember { mutableIntStateOf(0) }
   Box(
-    modifier = Modifier.fillMaxSize()
+    modifier = Modifier
+      .fillMaxSize()
+      .clickable { heartCount.intValue++ }
   ) {
-    val heartCount = remember { mutableIntStateOf(0) }
-
     repeat(heartCount.intValue) {
       LikeAnimation(
         modifier = Modifier
