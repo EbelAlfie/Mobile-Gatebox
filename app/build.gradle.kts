@@ -1,3 +1,10 @@
+import java.io.FileInputStream
+import java.util.Properties
+
+val localProperties = Properties().also {
+  it.load(FileInputStream(File(rootProject.rootDir, "local.properties")))
+}
+
 plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -18,6 +25,8 @@ android {
     vectorDrawables {
       useSupportLibrary = true
     }
+
+    buildConfigField("String", "WEB_URL", localProperties.getProperty("webview.url"))
   }
 
   buildTypes {
@@ -38,6 +47,7 @@ android {
   }
   buildFeatures {
     compose = true
+    buildConfig = true
   }
   composeOptions {
     kotlinCompilerExtensionVersion = "1.5.1"
